@@ -58,12 +58,12 @@ var character = function (name, HP, attack, haveItems, items) {
 		if (item === "potion") {
 			HP = HP + items.potion[1];
 			items.potion[0]--;
-			console.log(name + " has used a potion and regained " + items.potion[1] + " hit points. HP now at " + HP + ".");
+			console.log(name + " used a potion and regained " + items.potion[1] + " hit points. HP now at " + HP + ".");
 		} else {
 			if (item === "rage") {
 				attack = attack + items.rage[1];
 				items.rage[0]--;
-				console.log(name + " has used rage and increased attack power by " + items.rage[1] + " for this battle. Attack power at " + attack + ".");
+				console.log(name + " used rage and increased attack power by " + items.rage[1] + " for this battle. Attack power at " + attack + ".");
 			} else {
 				if (item === "revive") {
 					HP = HP + items.revive[1];
@@ -107,9 +107,9 @@ var character = function (name, HP, attack, haveItems, items) {
 			// if my HP low, use a potion if available
 			if (HP < 10) {
 				if (items.potion[0] > 0) {
-					console.log(items.potion[0]);
+				//	console.log(items.potion[0]);
 					useItem("potion");
-					console.log(items.potion[0]);
+				//	console.log(items.potion[0]);
 				};
 			};
 			
@@ -195,3 +195,6 @@ console.log("Greetings, " + hero.getName() + ", to the forest. This is the start
 	+ "and remember to use your items when needed. You may even find more along your way. Good luck!");
 
 enemies[0] = hero.attacks(enemies[0]);
+enemies[1] = hero.attacks(enemies[1]);
+enemies[2] = hero.attacks(enemies[2]);
+enemies[3] = hero.attacks(enemies[3]);
