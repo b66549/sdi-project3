@@ -32,16 +32,19 @@ var character = function (name, HP, attack, haveItems, items) {
 	};
 
 	// Method to add an item to the character's inventory
+	// Accepts String as argument 
 	var addItem = function(item) {
-		if (item === "potion") {
-			items.potion[0]++;
-		} else {
-			if (item === "rage") {
-				items.rage[0]++;
-			} else {
-				if (item === "revive") {
-					items.revive[0]++;
-				};
+		for (var i = 0; i < items.length; i++) {
+			if (item === items[i][0]) {
+				items[i][1]++;
+//			} else {
+//				if (item === "rage") {
+//					items.rage[0]++;
+//				} else {
+//					if (item === "revive") {
+//						items.revive[0]++;
+//					};
+//				};
 			};
 		};
 		
@@ -56,19 +59,19 @@ var character = function (name, HP, attack, haveItems, items) {
 	// Method to use an item from the character's inventory
 	var useItem = function(item) {
 		if (item === "potion") {
-			HP = HP + items.potion[1];
-			items.potion[0]--;
-			console.log(name + " used a potion and regained " + items.potion[1] + " hit points. HP now at " + HP + ".");
+			HP = HP + items[0][2];
+			items[0][1]--;
+			console.log(name + " used a potion and regained " + items[0][2] + " hit points. HP now at " + HP + ".");
 		} else {
 			if (item === "rage") {
-				attack = attack + items.rage[1];
-				items.rage[0]--;
-				console.log(name + " used rage and increased attack power by " + items.rage[1] + " for this battle. Attack power at " + attack + ".");
+				attack = attack + items[1][2];
+				items[1][1]--;
+				console.log(name + " used rage and increased attack power by " + items[1][2] + " for this battle. Attack power at " + attack + ".");
 			} else {
 				if (item === "revive") {
-					HP = HP + items.revive[1];
-					items.revive[0]--;
-					console.log(name + "'s HP is at 0, but used revive just in time. HP is back to " + items.revive[1] + ".");
+					HP = HP + items[2][2];
+					items[2][1]--;
+					console.log(name + "'s HP is at 0, but used revive just in time. HP is back to " + items[2][2] + ".");
 				};
 			};
 		};
