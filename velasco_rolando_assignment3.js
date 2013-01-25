@@ -3,7 +3,12 @@
 // Project 3
 // Theme: Knights
 
-var character = function (name, HP, attack, haveItems, items) {
+var character = function (newName, newHP, newAttack, newHaveItems, newItems) {
+	var name = newName;
+	var HP = newHP;
+	var attack = newAttack;
+	var haveItems = newHaveItems;
+	var items = newItems;
 
 	// Method to get the character's name as a string
 	var getName = function() {
@@ -37,14 +42,6 @@ var character = function (name, HP, attack, haveItems, items) {
 		for (var i = 0; i < items.length; i++) {
 			if (item === items[i][0]) {
 				items[i][1]++;
-//			} else {
-//				if (item === "rage") {
-//					items.rage[0]++;
-//				} else {
-//					if (item === "revive") {
-//						items.revive[0]++;
-//					};
-//				};
 			};
 		};
 		
@@ -206,9 +203,18 @@ console.log("Greetings, " + heroName + ", to the forest. This is the start of yo
 console.log("Thanks to your training earlier you have " + heroHP + " HP with an attack strength of " + heroAttackPower + ".");
 console.log("You purchased items before beginning your quest, is that right? " + heroHaveItems + ".");
 console.log("Okay, let's look at your inventory:");
-console.log("Potion:\t" + heroItems[0][1] + "\t" + heroItems[0][3] + ".");
-console.log("Rage:\t" + heroItems[1][1] + "\t" + heroItems[1][3] + ".");
-console.log("Revive:\t" + heroItems[2][1] + "\t" + heroItems[2][3] + ".");
+
+//nested for loop
+for (var i = 0; i < heroItems.length; i++) {
+	var outputString = "";
+	for (var j = 0; j < heroItems[i].length; j++) {
+		outputString = outputString + heroItems[i][j] + "\t";
+	};
+	console.log(outputString);
+}
+// console.log("Potion:\t" + heroItems[0][1] + "\t" + heroItems[0][3] + ".");
+// console.log("Rage:\t" + heroItems[1][1] + "\t" + heroItems[1][3] + ".");
+// console.log("Revive:\t" + heroItems[2][1] + "\t" + heroItems[2][3] + ".");
 
 enemies[0] = hero.attacks(enemies[0]);
 enemies[1] = hero.attacks(enemies[1]);
@@ -216,3 +222,4 @@ enemies[2] = hero.attacks(enemies[2]);
 enemies[3] = hero.attacks(enemies[3]);
 enemies[4] = hero.attacks(enemies[4]);
 enemies[5] = hero.attacks(enemies[5]);
+
