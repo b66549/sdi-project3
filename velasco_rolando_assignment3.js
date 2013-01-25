@@ -27,7 +27,7 @@ var character = function (name, HP, attack, haveItems, items) {
 	};
 
 	// Method to check if the character has items in the inventory and return a boolean
-	var haveItems = function() {
+	var checkHaveItems = function() {
 		return haveItems;
 	};
 
@@ -68,7 +68,7 @@ var character = function (name, HP, attack, haveItems, items) {
 				if (item === "revive") {
 					HP = HP + items.revive[1];
 					items.revive[0]--;
-					console.log(name + "'s HP is at 0, but used revive just in time. HP is back to " + items.potion[1] + ".");
+					console.log(name + "'s HP is at 0, but used revive just in time. HP is back to " + items.revive[1] + ".");
 				};
 			};
 		};
@@ -92,7 +92,7 @@ var character = function (name, HP, attack, haveItems, items) {
 		var enemyName = enemy.getName();
 		var enemyHP = enemy.getHP();
 		var enemyAttack = enemy.getAttack();
-		var enemyHasItems = enemy.haveItems();
+		var enemyHasItems = enemy.checkHaveItems();
 		
 		// Output declaration of battle
 		console.log(name + " has encountered a " + enemyName + ". Let the battle begin!");
@@ -128,8 +128,8 @@ var character = function (name, HP, attack, haveItems, items) {
 			
 			// if my HP is 0, use revive if available
 			if (HP <= 0) {
-				HP = 0;
 				if (items.revive[0] > 0) {
+					HP = 0;
 					useItem("revive");
 				};
 			};
@@ -161,7 +161,7 @@ var character = function (name, HP, attack, haveItems, items) {
 		"getHP": getHP,
 		"setHP": setHP,
 		"getAttack": getAttack,
-		"haveItems": haveItems,
+		"checkHaveItems": checkHaveItems,
 		"addItem": addItem,
 		"useItem": useItem,
 		"getItems": getItems,
@@ -172,7 +172,7 @@ var character = function (name, HP, attack, haveItems, items) {
 
 // Main code
 
-// Initialize variables
+// Initialize global variables
 // Initialize hero character
 var hero = json.hero[0];
 // console.log(hero); // test that the right hero data is pulled.
@@ -189,12 +189,27 @@ for (var i = 0; i < json.enemies.length; i++) {
 
 };
 
-// start of the story
-console.log("Greetings, " + hero.getName() + ", to the forest. This is the start of your quest and your journey to become one of King Arthur's knights.\n"
+// Use accessor methods to get info on the hero character
+var heroName = hero.getName();
+var heroHP = hero.getHP();
+var heroAttackPower = hero.getAttack();
+var heroHaveItems = hero.checkHaveItems();
+var heroItems = hero.getItems();
+
+// Output hero information in the story
+console.log("Greetings, " + heroName + ", to the forest. This is the start of your quest and your journey to become one of King Arthur's knights.\n"
 	+ "It is a perilous journey, full of monsters, so be on guard and vigilant. Use your strength and cunning to vanquish your enemies,\n"
 	+ "and remember to use your items when needed. You may even find more along your way. Good luck!");
+console.log("Thanks to your training earlier you have " + heroHP + " HP with an attack strength of " + heroAttackPower + ".");
+console.log("You purchased items before beginning your quest, is that right? " + heroHaveItems + ".");
+console.log("Okay, let's look at your inventory:");
+console.log("Potion:\t" + heroItems.potion[0] + "\t" + heroItems.potion[2] + ".");
+console.log("Rage:\t" + heroItems.rage[0] + "\t" + heroItems.rage[2] + ".");
+console.log("Revive:\t" + heroItems.revive[0] + "\t" + heroItems.revive[2] + ".");
 
 enemies[0] = hero.attacks(enemies[0]);
 enemies[1] = hero.attacks(enemies[1]);
 enemies[2] = hero.attacks(enemies[2]);
 enemies[3] = hero.attacks(enemies[3]);
+enemies[4] = hero.attacks(enemies[4]);
+enemies[5] = hero.attacks(enemies[5]);
