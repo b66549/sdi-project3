@@ -3,12 +3,13 @@
 // Project 3
 // Theme: Knights
 
-var character = function (newName, newHP, newAttack, newHaveItems, newItems) {
+var character = function (newName, newHP, newAttack, newHaveItems, newItems, newEquipment) {
 	var name = newName;
 	var HP = newHP;
 	var attack = newAttack;
 	var haveItems = newHaveItems;
 	var items = newItems;
+	var equipment = newEquipment;
 
 	// Method to get the character's name as a string
 	var getName = function() {
@@ -81,9 +82,14 @@ var character = function (newName, newHP, newAttack, newHaveItems, newItems) {
 		return;
 	};
 	
-	// Method to get the character's item list as an object
+	// Method to get the character's item list as an array
 	var getItems = function() {
 		return items;
+	};
+	
+	// Method to get the character's equipment as an object
+	var getEquipment = function() {
+		return equipment;
 	};
 	
 	// Method to initiate a battle sequence between two characters.
