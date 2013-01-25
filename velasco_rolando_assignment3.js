@@ -171,6 +171,7 @@ var character = function (newName, newHP, newAttack, newHaveItems, newItems, new
 		"addItem": addItem,
 		"useItem": useItem,
 		"getItems": getItems,
+		"getEquipment": getEquipment,
 		"attacks": attacks
 	};
 };
@@ -182,7 +183,7 @@ var character = function (newName, newHP, newAttack, newHaveItems, newItems, new
 // Initialize hero character
 var hero = json.hero[0];
 // console.log(hero); // test that the right hero data is pulled.
-hero = character(hero.name, hero.HP, hero.attack, hero.haveItems, hero.items);
+hero = character(hero.name, hero.HP, hero.attack, hero.haveItems, hero.items, hero.equipment);
 // console.log("hero name: " + hero.getName()); // test that the object was created successfully.
 
 // Initialize enemy characters
@@ -190,7 +191,7 @@ var enemies = [];
 for (var i = 0; i < json.enemies.length; i++) {
 	var enemy = json.enemies[i];
 //	console.log(enemy); // test that the right enemy data is pulled.
-	enemies.push(character(enemy.name, enemy.HP, enemy.attack, enemy.haveItems, enemy.items));
+	enemies.push(character(enemy.name, enemy.HP, enemy.attack, enemy.haveItems, enemy.items, enemy.equipment));
 //	console.log("enemy" + i + " name: " + enemies[i].getName()); // test that the object was created successfully.
 
 };
@@ -201,6 +202,7 @@ var heroHP = hero.getHP();
 var heroAttackPower = hero.getAttack();
 var heroHaveItems = hero.checkHaveItems();
 var heroItems = hero.getItems();
+var heroEquipment = hero.getEquipment();
 
 // Output hero information in the story
 console.log("Greetings, " + heroName + ", to the forest. This is the start of your quest and your journey to become one of King Arthur's knights.\n"
@@ -208,16 +210,23 @@ console.log("Greetings, " + heroName + ", to the forest. This is the start of yo
 	+ "and remember to use your items when needed. You may even find more along your way. Good luck!");
 console.log("Thanks to your training earlier you have " + heroHP + " HP with an attack strength of " + heroAttackPower + ".");
 console.log("You purchased items before beginning your quest, is that right? " + heroHaveItems + ".");
-console.log("Okay, let's look at your inventory:");
+console.log("Okay, let's look at your items inventory:");
 
-//nested for loop
+// Nested for loop to output the hero's items
 for (var i = 0; i < heroItems.length; i++) {
 	var outputString = "";
 	for (var j = 0; j < heroItems[i].length; j++) {
 		outputString = outputString + heroItems[i][j] + "\t";
 	};
 	console.log(outputString);
-}
+};
+
+// Output the hero's equipment
+console.log("Now, let's see what you have equipped:");
+console.log("Your weapon: " + heroEquipment.weapon);
+console.log("Your armor: " + heroEquipment.armor);
+console.log("Your headgear: " + heroEquipment.head);
+
 // console.log("Potion:\t" + heroItems[0][1] + "\t" + heroItems[0][3] + ".");
 // console.log("Rage:\t" + heroItems[1][1] + "\t" + heroItems[1][3] + ".");
 // console.log("Revive:\t" + heroItems[2][1] + "\t" + heroItems[2][3] + ".");
