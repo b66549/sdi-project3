@@ -77,7 +77,7 @@ var character = function (name, HP, attack, haveItems, items) {
 		};
 		
 		// If there are no more items in the inventory, change haveItems to false
-		if (items.potion[0] === 0 && items.rage[0] === 0 && items.revive[0] === 0) {
+		if (items[0][1] === 0 && items[1][1] === 0 && items[2][1] === 0) {
 			haveItems = false;
 		};
 		
@@ -109,7 +109,7 @@ var character = function (name, HP, attack, haveItems, items) {
 		while (HP > 0 && enemyHP > 0) {
 			// if my HP low, use a potion if available
 			if (HP < 10) {
-				if (items.potion[0] > 0) {
+				if (items[0][1] > 0) {
 				//	console.log(items.potion[0]);
 					useItem("potion");
 				//	console.log(items.potion[0]);
@@ -118,7 +118,7 @@ var character = function (name, HP, attack, haveItems, items) {
 			
 			// if enemy attack power is greater than mine, use rage if available
 			if (attack < enemyAttack) {
-				if (items.rage[0] > 0) {
+				if (items[1][1] > 0) {
 					useItem("rage");
 				};
 			};
@@ -131,7 +131,7 @@ var character = function (name, HP, attack, haveItems, items) {
 			
 			// if my HP is 0, use revive if available
 			if (HP <= 0) {
-				if (items.revive[0] > 0) {
+				if (items[2][1] > 0) {
 					HP = 0;
 					useItem("revive");
 				};
@@ -206,9 +206,9 @@ console.log("Greetings, " + heroName + ", to the forest. This is the start of yo
 console.log("Thanks to your training earlier you have " + heroHP + " HP with an attack strength of " + heroAttackPower + ".");
 console.log("You purchased items before beginning your quest, is that right? " + heroHaveItems + ".");
 console.log("Okay, let's look at your inventory:");
-console.log("Potion:\t" + heroItems.potion[0] + "\t" + heroItems.potion[2] + ".");
-console.log("Rage:\t" + heroItems.rage[0] + "\t" + heroItems.rage[2] + ".");
-console.log("Revive:\t" + heroItems.revive[0] + "\t" + heroItems.revive[2] + ".");
+console.log("Potion:\t" + heroItems[0][1] + "\t" + heroItems[0][3] + ".");
+console.log("Rage:\t" + heroItems[1][1] + "\t" + heroItems[1][3] + ".");
+console.log("Revive:\t" + heroItems[2][1] + "\t" + heroItems[2][3] + ".");
 
 enemies[0] = hero.attacks(enemies[0]);
 enemies[1] = hero.attacks(enemies[1]);
