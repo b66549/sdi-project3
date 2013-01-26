@@ -101,7 +101,7 @@ var character = function (newName, newHP, newAttack, newHaveItems, newItems, new
 		var enemyHasItems = enemy.checkHaveItems();
 		
 		// Output declaration of battle
-		console.log(name + " has encountered a " + enemyName + ". Let the battle begin!");
+		console.log("You encountered a " + enemyName + ". Let the battle begin!");
 		console.log(name + ":\tHP: " + HP + "\tAttack: " + attack);
 		console.log(enemyName + ":\tHP: " + enemyHP + "\tAttack: " + enemyAttack);
 		
@@ -146,10 +146,10 @@ var character = function (newName, newHP, newAttack, newHaveItems, newItems, new
 		
 		// end of battle declaration
 		if (HP <= 0) {
-			console.log(name + " has perished. This is the end of the story. Game over!");
+			console.log(name + " has been slain. This is the end of the story. Game over!");
 		} else {
 			if (enemyHP <= 0) {
-				console.log(enemyName + " has perished. " + name + " is victorious!");
+				console.log(enemyName + " has been slain. You are victorious!");
 			};
 		};
 						
@@ -157,7 +157,7 @@ var character = function (newName, newHP, newAttack, newHaveItems, newItems, new
 		enemy.setHP(enemyHP);
 		attack = tempAttack;
 		
-		return enemy;
+		return;
 	};
 
 	// Return public methods only
@@ -229,12 +229,12 @@ console.log("Your headgear: " + heroEquipment.head);
 
 // Hero finds an item, add it to the item inventory
 hero.addItem("potion");
-console.log("You found a potion!  Adding it to your inventory.  Now you have " + heroItems[0][1] + " potions.");
+console.log("While on your travels you found a potion!  Adding it to your inventory.  Now you have " + heroItems[0][1] + " potions.");
 
-enemies[0] = hero.attacks(enemies[0]);
-enemies[1] = hero.attacks(enemies[1]);
-enemies[2] = hero.attacks(enemies[2]);
-enemies[3] = hero.attacks(enemies[3]);
-enemies[4] = hero.attacks(enemies[4]);
-enemies[5] = hero.attacks(enemies[5]);
+hero.attacks(enemies[0]);
+hero.attacks(enemies[1]);
+hero.attacks(enemies[2]);
+hero.attacks(enemies[3]);
+hero.attacks(enemies[4]);
+hero.attacks(enemies[5]);
 
