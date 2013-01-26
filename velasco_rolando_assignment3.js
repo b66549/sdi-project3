@@ -1,8 +1,9 @@
 // Rolando Velasco
-// 01-24-2013
+// 01-26-2013
 // Project 3
 // Theme: Knights
 
+// character object definition
 var character = function (newName, newHP, newAttack, newHaveItems, newItems, newEquipment) {
 	var name = newName;
 	var HP = newHP;
@@ -146,7 +147,7 @@ var character = function (newName, newHP, newAttack, newHaveItems, newItems, new
 		
 		// end of battle declaration
 		if (HP <= 0) {
-			console.log(name + " has been slain. This is the end of the story. Game over!");
+			console.log(name + " has been slain.");
 		} else {
 			if (enemyHP <= 0) {
 				console.log(enemyName + " has been slain. You are victorious!");
@@ -209,20 +210,25 @@ console.log("Greetings, " + heroName + ", to the forest. This is the start of yo
 	+ "It is a perilous journey, full of monsters, so be on guard and vigilant. Use your strength and cunning to vanquish your enemies,\n"
 	+ "and remember to use your items when needed. You may even find more along your way. Good luck!");
 console.log("Thanks to your training earlier you have " + heroHP + " HP with an attack strength of " + heroAttackPower + ".");
-console.log("You purchased items before beginning your quest, is that right? " + heroHaveItems + ".");
-console.log("Okay, let's look at your items inventory:");
+console.log("You purchased items before beginning your quest, is that right? " + heroHaveItems);
 
-// Nested for loop to output the hero's items
-for (var i = 0; i < heroItems.length; i++) {
-	var outputString = "";
-	for (var j = 0; j < heroItems[i].length; j++) {
-		outputString = outputString + heroItems[i][j] + "\t";
+// output items list only if heroHaveItems is true
+if (heroHaveItems === true) {
+	console.log("Okay, let's look at your items inventory:");
+	console.log("Item\t#\tBoost\tDescription");
+
+	// Nested for loop to output the hero's items
+	for (var i = 0; i < heroItems.length; i++) {
+		var outputString = "";
+		for (var j = 0; j < heroItems[i].length; j++) {
+			outputString = outputString + heroItems[i][j] + "\t";
+		};
+		console.log(outputString);
 	};
-	console.log(outputString);
 };
 
 // Output the hero's equipment
-console.log("Now, let's see what you have equipped:");
+console.log("Let's see your equipment:");
 console.log("Your weapon: " + heroEquipment.weapon);
 console.log("Your armor: " + heroEquipment.armor);
 console.log("Your headgear: " + heroEquipment.head);
@@ -231,10 +237,15 @@ console.log("Your headgear: " + heroEquipment.head);
 hero.addItem("potion");
 console.log("While on your travels you found a potion!  Adding it to your inventory.  Now you have " + heroItems[0][1] + " potions.");
 
-hero.attacks(enemies[0]);
-hero.attacks(enemies[1]);
-hero.attacks(enemies[2]);
-hero.attacks(enemies[3]);
-hero.attacks(enemies[4]);
-hero.attacks(enemies[5]);
+// Initiate enemy encounters.
+// As long as there are enemies remaining and hero is still alive, keep attacking enemies
+for (var i = 0; i < enemies.length && hero.getHP() > 0; i++) {
+	hero.attacks(enemies[i]);
+};
 
+// Final output based on hero's HP
+if (hero.getHP() <= 0) {
+	console.log("This is the end of the story. Game over!");
+} else {
+	console.log("Well done, " + heroName + "! You have made it through the forest. Continue on your quest and we will see you upon return.");
+};
