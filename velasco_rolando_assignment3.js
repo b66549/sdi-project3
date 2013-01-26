@@ -227,9 +227,9 @@ console.log("Your weapon: " + heroEquipment.weapon);
 console.log("Your armor: " + heroEquipment.armor);
 console.log("Your headgear: " + heroEquipment.head);
 
-// console.log("Potion:\t" + heroItems[0][1] + "\t" + heroItems[0][3] + ".");
-// console.log("Rage:\t" + heroItems[1][1] + "\t" + heroItems[1][3] + ".");
-// console.log("Revive:\t" + heroItems[2][1] + "\t" + heroItems[2][3] + ".");
+// Hero finds an item, add it to the item inventory
+hero.addItem("potion");
+console.log("You found a potion!  Adding it to your inventory.  Now you have " + heroItems[0][1] + " potions.");
 
 enemies[0] = hero.attacks(enemies[0]);
 enemies[1] = hero.attacks(enemies[1]);
